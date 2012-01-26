@@ -3,7 +3,6 @@ from __future__ import absolute_import
 import os
 import subprocess
 
-from flask import _request_ctx_stack
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
