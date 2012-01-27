@@ -2,7 +2,8 @@
 Flask-Cake
 ----------
 
-Flask extension to execute Cake on filesystem events.
+Flask extension that automatically runs Cake commands on filesystem changes
+to help with CoffeeScript development.
 """
 from setuptools import setup
 
