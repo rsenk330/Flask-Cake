@@ -4,6 +4,13 @@ Flask-Cake
 
 Flask extension that automatically runs Cake commands on filesystem changes
 to help with CoffeeScript development.
+
+Links
+`````
+
+* `Documentation <http://flask-cake.readthedocs.org/>`_
+* `Development Version
+  <https://github.com/rsenk330/Flask-Cake/tarball/master#egg=Flask-Cake-dev>`_
 """
 from setuptools import setup
 
