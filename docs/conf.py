@@ -101,8 +101,8 @@ html_theme = 'default'
 html_theme_options = {'github_fork': 'rsenk330/Flask-Cake', 'index_logo': False}
 
 # Add any paths that contain custom themes here, relative to this directory.
-html_theme_path = ['_themes']
-html_theme = 'flask_small'
+# html_theme_path = ['_themes']
+# html_theme = 'flask_small'
 
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
