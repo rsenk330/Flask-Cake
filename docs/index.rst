@@ -72,12 +72,12 @@ Here is a simple example of a `build` task that combines many different `.coffee
 
         exec "coffee --join app.js --output ../js/ --compile #{coffeeFiles.toString().replace(/,/g, ' ')}"
 
-If your `Cakefile` isn't located at the default `static/coffee/Cakefile` directory, you can specify the parent directory by using the ``cakeparent`` argument. Any path you specify should be relative to the Flask `static_path`. For example, to use a `Cakefile` located at `static_path/example/coffeefiles/Cakefile`, you should pass ``cakeparent=example/coffeefiles``:
+If your `Cakefile` isn't located at the default `static/coffee/Cakefile` directory, you can specify the parent directory by using the ``cakeparent`` argument. Any path you specify should be relative to the Flask `static_path`. For example, to use a `Cakefile` located at `static_path/example/coffeefiles/Cakefile`, you should pass ``cakeparent="example/coffeefiles"``:
 
 .. code-block:: python
 
     app = Flask(__name__)
-    cake = Cake(app, "cakeparent=example/coffeefiles")
+    cake = Cake(app, cakeparent="example/coffeefiles")
 
 .. Configuration
 .. -------------
