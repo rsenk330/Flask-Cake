@@ -22,7 +22,7 @@ class Cake(object):
         """
         self.init_app(app, tasks, cakeparent)
 
-    def init_app(self, app, tasks, cakeparent):
+    def init_app(self, app, tasks=["build"], cakeparent="coffee"):
         """Initalize a new instance of Flask-Cake.
 
         :param app: The Flask app
