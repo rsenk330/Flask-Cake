@@ -43,15 +43,6 @@ Like most Flask extensions, a Flask-Cake instance may be used with multiple appl
     cake = Cake()
     cake.init_app(app)
 
-Currently, Flask-Cake requires you to have a directory structure like this:
-
-.. code-block:: text
-
-    app/
-      static/
-        coffee/
-          Cakefile
-
 By default, ``cake build`` will be executed. If your task is called something else, you can specifiy that with an additional argument when you create an instance of :class:`flask_cake.Cake`. If you need to run multiple tasks, you can also specify a list of tasks:
 
 .. code-block:: python
@@ -80,6 +71,13 @@ Here is a simple example of a `build` task that combines many different `.coffee
         console.log 'Building PunchedOut! application.js file...'
 
         exec "coffee --join app.js --output ../js/ --compile #{coffeeFiles.toString().replace(/,/g, ' ')}"
+
+If your `Cakefile` isn't located at the default `static/coffee/Cakefile` directory, you can specify the parent directory by using the ``cakeparent`` argument. Any path you specify should be relative to the Flask `static_path`. For example, to use a `Cakefile` located at `static_path/example/coffeefiles/Cakefile`, you should pass ``cakeparent=example/coffeefiles``:
+
+.. code-block:: python
+
+    app = Flask(__name__)
+    cake = Cake(app, "cakeparent=example/coffeefiles")
 
 .. Configuration
 .. -------------
