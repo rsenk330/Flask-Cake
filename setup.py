@@ -17,7 +17,7 @@ from setuptools import setup
 
 setup(
     name='Flask-Cake',
-    version='0.2',
+    version='0.2.1',
     url='http://github.com/rsenk330/Flask-Cake',
     license='BSD',
     author='Ryan Senkbeil',
