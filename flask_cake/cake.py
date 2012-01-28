@@ -7,37 +7,45 @@ from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
 class Cake(object):
-    def __init__(self, app=None, tasks=["build"]):
+    def __init__(self, app=None, tasks=["build"], cakeparent="coffee"):
         """Initalize a new instance of Flask-Cake.
 
         :param app: The Flask app
         :param tasks: A string containing a cake "task" to execute or a list
                       of multiple cake tasks to run. By default, this will run
                       ``cake build``.
+        :param str cakeparent: The directory where the Cakefile is located
+                               relative to Flask's `static_path`. By default,
+                               this is `coffee/`, meaning that the Cakefile is
+                               located at `static_path/coffee/Cakefile`.
 
         """
-        self.init_app(app, tasks)
+        self.init_app(app, tasks, cakeparent)
 
-    def init_app(self, app, tasks):
+    def init_app(self, app, tasks, cakeparent):
         """Initalize a new instance of Flask-Cake.
 
         :param app: The Flask app
         :param tasks: A string containing a cake "task" to execute or a list
                       of multiple cake tasks to run. By default, this will run
                       ``cake build``.
+        :param str cakeparent: The directory where the Cakefile is located
+                               relative to Flask's `static_path`. By default,
+                               this is `coffee/`, meaning that the Cakefile is
+                               located at `static_path/coffee/Cakefile`.
 
         """
         self.app = app
         self.tasks = tasks
+        self.cakeparent = cakeparent
 
         self._watchdog()
 
     def _watchdog(self):
         """Runs Watchdog to listen to filesystem events.
 
-        The directory currently requires the CoffeeScript files to be located
-        in `static/coffee`. This directory should contain the `Cakefile`. When
-        first run, it touches the `Cakefile` to trigger the initial build.
+        When first run, the `Cakefile` is touched to trigger the
+        initial build.
 
         """
         if not hasattr(self.app, 'static_url_path'):
@@ -53,7 +61,7 @@ class Cake(object):
 
         static_dir = self.app.root_path + static_url_path
 
-        cakedir = os.path.join(static_dir, "coffee")
+        cakedir = os.path.join(static_dir, self.cakeparent)
 
         # Setup Watchdog
         handler = Events(cakedir=cakedir, tasks=self.tasks)
