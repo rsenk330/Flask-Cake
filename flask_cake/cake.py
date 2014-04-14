@@ -61,7 +61,7 @@ class Cake(object):
 
         static_dir = self.app.root_path + static_url_path
 
-        cakedir = os.path.join(static_dir, self.cakeparent)
+        cakedir = os.path.abspath(os.path.join(static_dir, self.cakeparent))
 
         # Setup Watchdog
         handler = Events(cakedir=cakedir, tasks=self.tasks)
