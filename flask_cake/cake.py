@@ -6,6 +6,7 @@ import subprocess
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
+
 class Cake(object):
     def __init__(self, app=None, tasks=["build"], cakeparent="coffee"):
         """Initalize a new instance of Flask-Cake.
@@ -37,7 +38,7 @@ class Cake(object):
         """
         self.app = app
         self.tasks = tasks
-        self.cakeparent = cakeparent
+        self.cake_parent = cakeparent
 
         self._watchdog()
 
@@ -61,7 +62,7 @@ class Cake(object):
 
         static_dir = self.app.root_path + static_url_path
 
-        cakedir = os.path.abspath(os.path.join(static_dir, self.cakeparent))
+        cakedir = os.path.abspath(os.path.join(static_dir, self.cake_parent))
 
         # Setup Watchdog
         handler = Events(cakedir=cakedir, tasks=self.tasks)
@@ -73,6 +74,7 @@ class Cake(object):
         cakefile = os.path.join(cakedir, "Cakefile")
         with file(cakefile, 'a'):
             os.utime(cakefile, None)
+
 
 class Events(FileSystemEventHandler):
     """Handler for all filesystem events."""

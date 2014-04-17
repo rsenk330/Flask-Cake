@@ -11,7 +11,7 @@ from flask import Flask
 from flask_cake import Cake
 
 app = Flask(__name__)
-mongo = Cake(app)
+cake = Cake(app)
 ```
 
 Whenever there is a change in the `static/coffee/` directory, `cake build` is executed.

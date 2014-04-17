@@ -21,7 +21,7 @@ setup(
     url='http://github.com/rsenk330/Flask-Cake',
     license='BSD',
     author='Ryan Senkbeil',
-    author_email='rsenk330@gmail.com',
+    author_email='me@ryansenkbeil.com',
     description='Flask extension to execute Cake on filesystem events.',
     long_description=__doc__,
     packages=['flask_cake'],
