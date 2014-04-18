@@ -3,6 +3,7 @@ from __future__ import absolute_import
 import os
 import subprocess
 
+from six import string_types
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
@@ -49,54 +50,42 @@ class Cake(object):
         initial build.
 
         """
-        if not hasattr(self.app, 'static_url_path'):
-            from warnings import warn
-            warn(
-                DeprecationWarning('static_path is called static_url_path since Flask 0.7'),
-                stacklevel=2
-            )
-
-            static_url_path = self.app.static_path
-        else:
-            static_url_path = self.app.static_url_path
-
+        static_url_path = self.app.static_url_path
         static_dir = self.app.root_path + static_url_path
-
-        cakedir = os.path.abspath(os.path.join(static_dir, self.cake_parent))
+        cake_dir = os.path.abspath(os.path.join(static_dir, self.cake_parent))
 
         # Setup Watchdog
-        handler = Events(cakedir=cakedir, tasks=self.tasks)
+        handler = Events(cake_dir=cake_dir, tasks=self.tasks)
         observer = Observer(timeout=5000)
-        observer.schedule(handler, path=cakedir, recursive=True)
+        observer.schedule(handler, path=cake_dir, recursive=True)
         observer.start()
 
         # "Touch" the Cakefile to signal the initial build
-        cakefile = os.path.join(cakedir, "Cakefile")
-        with file(cakefile, 'a'):
+        cakefile = os.path.join(cake_dir, "Cakefile")
+        with open(cakefile, 'r'):
             os.utime(cakefile, None)
 
 
 class Events(FileSystemEventHandler):
     """Handler for all filesystem events."""
 
-    def __init__(self, cakedir, tasks):
+    def __init__(self, cake_dir, tasks):
         super(Events, self).__init__()
 
-        self._cakedir = cakedir
+        self._cake_dir = cake_dir
+
+        # Check to see if the tasks are specified as a single task or multiple
+        # tasks.
+        if isinstance(tasks, string_types):
+            tasks = [tasks]
+
         self._tasks = tasks
 
     def on_any_event(self, event):
         nullfh = open(os.devnull, "w")
 
-        # Check to see if the tasks are specified as a single task or multiple
-        # tasks.
-        if isinstance(self._tasks, basestring):
-            tasks = [self._tasks]
-        else:
-            tasks = self._tasks
-
         # Run `cake build` and send all stdout to `/dev/null`.
-        p = subprocess.Popen(["cake"] + tasks, cwd=self._cakedir, stdout=nullfh)
+        p = subprocess.Popen(["cake"] + self._tasks, cwd=self._cake_dir, stdout=nullfh)
         p.wait()
 
         nullfh.close()

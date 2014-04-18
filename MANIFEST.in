@@ -1,0 +1,10 @@
+include AUTHORS.md CHANGES.md LICENSE README.md requirements.txt setup.py
+recursive-include flask_cake *
+
+global-exclude __pycache__/*
+global-exclude *.so
+global-exclude *.pyd
+global-exclude *.pyc
+global-exclude *.swp
+global-exclude .git*
+global-exclude .DS_Store

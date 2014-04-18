@@ -1,4 +1,9 @@
+/.cache
+/.coverage
+/.tox
+
 *.pyc
 *.egg-info
+*.swo
 docs/_build
 dist
