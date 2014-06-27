@@ -50,9 +50,8 @@ class Cake(object):
         initial build.
 
         """
-        static_url_path = self.app.static_url_path
-        static_dir = self.app.root_path + static_url_path
-        cake_dir = os.path.abspath(os.path.join(static_dir, self.cake_parent))
+        static_folder = self.app.static_folder
+        cakedir = os.path.join(static_folder, self.cake_parent)
 
         # Setup Watchdog
         handler = Events(cake_dir=cake_dir, tasks=self.tasks)
