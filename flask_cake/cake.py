@@ -50,7 +50,7 @@ class Cake(object):
         initial build.
 
         """
-        cake_dir = os.path.join(self.app.static_folder, self.cake_parent)
+        cake_dir = os.path.abspath(os.path.join(self.app.static_folder, self.cake_parent))
 
         # Setup Watchdog
         handler = Events(cake_dir=cake_dir, tasks=self.tasks)
