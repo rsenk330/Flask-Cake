@@ -3,6 +3,8 @@
 ## master (unreleased)
 
 - Use absolute path when building the cake dir. Thanks fordhurley.
+- Use `static_folder` instead of `url_path`. Thanks liuweichu.
+- Python 3 support
 
 ## 0.2.1 (2012-01-27)
 
