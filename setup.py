@@ -17,7 +17,7 @@ install_reqs = parse_requirements('requirements.txt')
 requirements = [str(ir.req) for ir in install_reqs if ir.req is not None]
 setup(
     name='Flask-Cake',
-    version='0.2.1',
+    version='0.3.0',
     url='http://github.com/rsenk330/Flask-Cake',
     license='BSD',
     author='Ryan Senkbeil',

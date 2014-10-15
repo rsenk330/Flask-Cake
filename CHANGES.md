@@ -1,6 +1,6 @@
 # CHANGES
 
-## master (unreleased)
+## 0.3.0 (2014-10-15)
 
 - Use absolute path when building the cake dir. Thanks fordhurley.
 - Use `static_folder` instead of `url_path`. Thanks liuweichu.
