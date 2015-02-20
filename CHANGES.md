@@ -1,5 +1,9 @@
 # CHANGES
 
+## 0.3.1 (2015-02-19)
+
+- Fix build by removing parsing of requirements.txt file.
+
 ## 0.3.0 (2014-10-15)
 
 - Use absolute path when building the cake dir. Thanks fordhurley.
