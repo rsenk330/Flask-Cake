@@ -1,6 +1,7 @@
 # Flask-Cake
 
-[![Build Status](https://travis-ci.org/rsenk330/Flask-Cake.png?branch=master)](https://travis-ci.org/rsenk330/Flask-Cake)
+[![Build Status](https://img.shields.io/travis/rsenk330/Flask-Cake.svg)](https://travis-ci.org/rsenk330/Flask-Cake)
+[![PyPI](https://img.shields.io/pypi/v/nine.svg)](https://pypi.python.org/pypi/Flask-Cake)
 
 Support for automatically executing CoffeeScript Cake files for Flask.
 
